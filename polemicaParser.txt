@@ -1,0 +1,26 @@
+Documentation for polemica game parser.
+
+GAMEINFO
+------------------------------------------------
+
+
+
+
+------------------------------------------------
+
+STATS
+------------------------------------------------
+
+TEAM ID -   0 - Mafia || Godfather
+            1  - Civilian || Sheriff
+            
+EXTRAS -    KILL_SHERIFF (GODFATHER KILLED SHERIFF IN FIRST NIGHT) // TODO
+            CHECK_SHERIFF (GODFATHER FOUND SHERIFF IN FIRST NIGHT) // TODO
+            MVP (MOST VALUABLE PLAYER IN THE GAME) // TODO
+            FIRST_KILLED (CIVILIAN OR SHERIFF THAT DEAD IN FIRST NIGHT) // TODO
+            FULL_BM (WRITE THE FULL BEST MOVE) // TODO
+            -------
+            OTHER IS COMMING
+
+
+------------------------------------------------
