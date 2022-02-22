@@ -22,3 +22,15 @@ from stats st2
 where st2.playerid =1083
 	) as SSt2
 	on SSt1.GID=SSt2.GID and SSt1.roleid = SSt2.roleid2
+	
+select sst1.playerid,sst2.playerid as PID, count (*) as cnt from 
+(
+select distinct st1.gameid as GID,st1.playerid as playerid
+from stats st1
+where st1.playerid = 259
+) sst1
+left outer join 
+stats sst2 on sst1.GID=sst2.gameid
+where sst2.playerid <> sst1.playerid and sst2.playerid=8701
+group by sst1.playerid,sst2.playerid
+order by cnt desc
