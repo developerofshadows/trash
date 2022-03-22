@@ -93,3 +93,24 @@ stats sst2 on sst1.GID=sst2.gameid
 where sst2.playerid <> sst1.playerid --and sst2.playerid = 8701
 group by sst1.playerid,sst2.playerid
 order by cnt desc,winrate desc
+
+
+select 
+  playerid,
+  count (*) as cnt,
+  COUNT(CASE WHEN stats.win=true THEN 1 END) as wins,
+  COUNT(CASE WHEN stats.win=false THEN 1 END) as loose,
+  ROUND(CAST(COUNT(CASE WHEN stats.win=true THEN 1 END) as DECIMAL)/(COUNT(CASE WHEN stats.win=true THEN 1 END)+COUNT(CASE WHEN stats.win=false THEN 1 END))*100,2) as winrate 
+from stats
+where gameid in
+(select gameid
+from gameinfo
+where starttime between '20220228 21:00' and '20220319 21:00')
+and playerid=8701
+
+group by playerid
+
+
+
+
+
