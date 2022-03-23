@@ -111,6 +111,18 @@ and playerid=8701
 group by playerid
 
 
-
+ select
+ 	    playerid,
+        count (*) as gamesCount,
+        COUNT(CASE WHEN stats.win=true THEN 1 END) as wins,
+        COUNT(CASE WHEN stats.win=false THEN 1 END) as loose,
+        ROUND(CAST(COUNT(CASE WHEN stats.win=true THEN 1 END) as DECIMAL)/(COUNT(CASE WHEN stats.win=true THEN 1 END)+COUNT(CASE WHEN stats.win=false THEN 1 END))*100,2) as winrate 
+      from stats
+      where gameid in
+      (select gameid
+      from gameinfo
+      where starttime between '20220315 21:00' and '20220322 21:00')
+      group by playerid
+	  order by loose desc
 
 
