@@ -126,3 +126,26 @@ group by playerid
 	  order by loose desc
 
 
+
+select TT.playerID, 
+	   coalesce(KL.cnt,0) as kills,
+       TT.cnttot as games,
+	   ROUND(CAST(coalesce(KL.cnt,0) as DECIMAL)/CAST(TT.cnttot as DECIMAL)*100,2) as PCT
+from
+(select playerid,
+       count(*) as CNTTOT
+from stats
+where role='civilian'
+group by playerid) TT
+left outer join
+(
+select playerid,
+       count(*) as CNT
+from stats
+where extra ->> 'firstKilled' = 'true' and role = 'civilian'
+group by playerid
+) KL on TT.playerid=KL.playerid
+order by games desc, pct desc 
+
+
+
